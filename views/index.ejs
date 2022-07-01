@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/styles.css">
+    <script lang="javascript" src="/xlsx.full.min.js" defer></script>
+    <script src="/main.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Welcome to my Employee Directory</h1>
+
+    <form action="/employees" method="POST">
+      <input type="text" placeholder="First Name" name="first-name" required/>
+      <input type="text" placeholder="Last Name" name="last-name" required/>
+      <!-- <label for="floor">Choose a floor:</label> -->
+      <select name="floor" id="floor-select">
+        <option value="">--Please choose a floor--</option>
+        <option value="5">5</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+      </select>
+      <input type="text" placeholder="Admin" name="admin" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2>Search Directory</h2>
+
+    <form id="formElem" action="/employees/search" method="GET">
+      <input type="text" placeholder="First Name" name="first-name" />
+      <input type="text" placeholder="Last Name" name="last-name" />
+      <!-- <label for="floor">Choose a floor:</label> -->
+      <select name="floor" class="floor-select">
+        <option value="">--Please choose a floor--</option>
+        <option value="5">5</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+      </select>
+      <input type="text" placeholder="Admin" name="admin" />
+      <button id="search" type="submit">Search</button>
+    </form>
+
+    <h2>Employees</h2>
+
+    <div class="employees table">
+      <div class="thead">
+        <span class="td">First Name</span>
+        <span id="sort-last-name" class="td">Last Name</span>
+        <span id="sort-floor" aria-sort="none" class="td">Floor</span>
+        <span class="td">Admin</span>
+      </div>
+      <% for(var i = 0; i < employees.length; i++) {%>
+      <div class="employee tr">
+        <span class="td"><%= employees[i]["first-name"] %></span>
+        <span class="td"><%= employees[i]["last-name"] %></span>
+        <span class="td"><%= employees[i].floor %></span>
+        <span class="td"><%= employees[i].admin %></span>
+        <span class="td"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>
+        <span class="td"><i class="fa-solid fa-trash" aria-hidden="true"></i></span>
+      </div>      
+      <form action="/employees/update" class="hidden" method="PUT">
+        <span class="td"><input type="text" placeholder="First Name" name="first-name" /></span>
+        <span class="td"><input type="text" placeholder="Last Name" name="last-name" /></span>          
+        <select name="floor" class="td floor-select">
+          <option value="">--Please choose a floor--</option>
+          <option value="5">5</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+          <option value="32">32</option>
+          <option value="33">33</option>
+          <option value="34">34</option>
+        </select>
+        <span class="td"><input type="text" placeholder="Admin" name="admin" /></span>
+        <span class="td"><button id="update-button" type="button">Update</button></span>
+      </form>
+      <% } %>
+    </div>
+
+    <h3>Upload your Excel spreadsheet data here:</h3>
+    <input type="file" id="fileUploader" name="fileUploader" accept=".xls, .xlsx" />
+    </br></br>
+    <label id="jsonObject"> Output : </label>
+    <button id="upload-button" class="hidden">Upload</button>
+    </br></br>
+
+    <h3>Download the directory as an Excel Spreadsheet:</h3>
+    <button id="download-button">Download</button>
+  </body>
+</html>
