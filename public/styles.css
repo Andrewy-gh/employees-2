@@ -1,0 +1,29 @@
+.hidden {
+  display: none;
+}
+
+i {
+  cursor: pointer;
+}
+
+.table {
+  display: table;
+}
+
+.tr {
+  display: table-row;
+}
+
+.td {
+  display: table-cell;
+}
+
+.thead {
+  display: table-header-group;
+}
+
+.thead span {
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
