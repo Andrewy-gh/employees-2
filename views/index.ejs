@@ -12,6 +12,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/styles.css">
+    <script lang="javascript" src="/list.min.js" defer></script>
     <script lang="javascript" src="/xlsx.full.min.js" defer></script>
     <script src="/main.js" defer></script>
     <title>Document</title>
@@ -61,40 +62,25 @@
 
     <h2>Employees</h2>
 
-    <div class="employees table">
+    <div id="employeeList" class="employees table">
       <div class="thead">
-        <span class="td">First Name</span>
-        <span id="sort-last-name" class="td">Last Name</span>
-        <span id="sort-floor" aria-sort="none" class="td">Floor</span>
-        <span class="td">Admin</span>
+        <span class="sort" data-sort="first-name">First Name</span>
+        <span class="sort" data-sort="last-name">Last Name</span>
+        <span class="sort" data-sort="floor">Floor</span>
+        <span class="sort" data-sort="admin">Admin</span>
       </div>
-      <% for(var i = 0; i < employees.length; i++) {%>
-      <div class="employee tr">
-        <span class="td"><%= employees[i]["first-name"] %></span>
-        <span class="td"><%= employees[i]["last-name"] %></span>
-        <span class="td"><%= employees[i].floor %></span>
-        <span class="td"><%= employees[i].admin %></span>
-        <span class="td"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>
-        <span class="td"><i class="fa-solid fa-trash" aria-hidden="true"></i></span>
-      </div>      
-      <form action="/employees/update" class="hidden" method="PUT">
-        <span class="td"><input type="text" placeholder="First Name" name="first-name" /></span>
-        <span class="td"><input type="text" placeholder="Last Name" name="last-name" /></span>          
-        <select name="floor" class="td floor-select">
-          <option value="">--Please choose a floor--</option>
-          <option value="5">5</option>
-          <option value="28">28</option>
-          <option value="29">29</option>
-          <option value="30">30</option>
-          <option value="31">31</option>
-          <option value="32">32</option>
-          <option value="33">33</option>
-          <option value="34">34</option>
-        </select>
-        <span class="td"><input type="text" placeholder="Admin" name="admin" /></span>
-        <span class="td"><button id="update-button" type="button">Update</button></span>
-      </form>
-      <% } %>
+      <div class="list">
+        <% for(var i = 0; i < employees.length; i++) {%>
+        <div class="employee tr list">
+          <span class="first-name td"><%= employees[i]["first-name"] %></span>
+          <span class="last-name td"><%= employees[i]["last-name"] %></span>
+          <span class="floor td"><%= employees[i].floor %></span>
+          <span class="admin td"><%= employees[i].admin %></span>
+          <span class="td"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>
+          <span class="td"><i class="fa-solid fa-trash" aria-hidden="true"></i></span>
+        </div>      
+        <% } %>
+      </div>
     </div>
 
     <h3>Upload your Excel spreadsheet data here:</h3>

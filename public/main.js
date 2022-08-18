@@ -7,28 +7,11 @@ const upload = document.querySelector('#upload-button');
 const download = document.querySelector('#download-button');
 const sortFloor = document.querySelector('#sort-floor');
 
-sortFloor.addEventListener('click', (evt) => {
-  if (!sortFloor.ariaSort || sortFloor.ariaSort === 'descending') {
-    sortFloor.ariaSort = 'ascending';
-    sortValue = 1;
-  } else if (sortFloor.ariaSort === 'ascending') {
-    sortFloor.ariaSort = 'descending';
-    sortValue = -1;
-  }
-  // fetch('/', {
-  //   method: 'get',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({
-  //     sort: sortValue,
-  //   }),
-  // })
-  //   .then((res) => {
-  //     if (res.ok) return res.json();
-  //   })
-  //   .then((response) => {
-  //     window.location.reload(true);
-  //   });
-});
+var options = {
+  valueNames: ['first-name', 'last-name', 'floor', 'admin'],
+};
+
+var employeeList = new List('employeeList', options);
 
 pen.forEach((e) => {
   e.addEventListener('click', (event) => {
